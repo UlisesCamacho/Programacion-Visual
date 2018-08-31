@@ -64,6 +64,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Eliminar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.eliminaGrupo);
             // 
             // listBox1
             // 
@@ -177,6 +178,7 @@
             this.button4.TabIndex = 14;
             this.button4.Text = "<";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.regresaAlumno);
             // 
             // button5
             // 
