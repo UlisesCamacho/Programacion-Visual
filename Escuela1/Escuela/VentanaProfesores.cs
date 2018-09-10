@@ -47,8 +47,7 @@ namespace Escuela
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int i;
-            i = listBox1.SelectedIndex;
+            int i = listBox1.SelectedIndex;
             listBox1.Items.RemoveAt(i);
             lp.RemoveAt(i);
         }

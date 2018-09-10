@@ -25,3 +25,15 @@ C:\Users\Usuario\Documents\Ulises\Programacion Visual\Escuela1\Escuela\obj\Debug
 C:\Users\Usuario\Documents\Ulises\Programacion Visual\Escuela1\Escuela\obj\Debug\Escuela.csproj.GenerateResource.Cache
 C:\Users\Usuario\Documents\Ulises\Programacion Visual\Escuela1\Escuela\obj\Debug\Escuela.VentanaProfesores.resources
 C:\Users\Usuario\Documents\Ulises\Programacion Visual\Escuela1\Escuela\obj\Debug\Escuela.VentanaGrupos.resources
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\bin\Debug\Escuela.exe.config
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.exe
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.pdb
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.csprojResolveAssemblyReference.cache
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.Form1.resources
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.VentanaGrupos.resources
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.Properties.Resources.resources
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.VentanaAlumno.resources
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.VentanaProfesores.resources
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\obj\Debug\Escuela.csproj.GenerateResource.Cache
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\bin\Debug\Escuela.exe
+C:\Users\Usuario\Documents\Ulises\Programacion-Visual\Escuela1\Escuela\bin\Debug\Escuela.pdb

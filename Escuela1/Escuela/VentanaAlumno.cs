@@ -29,6 +29,13 @@ namespace Escuela
             la.Add(a);
             listBox1.Items.Add(a.regresaNombre());
             limpia();
+            //la.Sort();
+            la = la.OrderBy(x => x.clave).ToList();
+            foreach (Alumno c in la)
+            {
+                MessageBox.Show("clave" + c.clave);
+            }
+
         }
         private void limpia()
         {

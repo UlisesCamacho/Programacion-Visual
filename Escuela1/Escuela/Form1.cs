@@ -34,6 +34,7 @@ namespace Escuela
             
         }
 
+
         private void button3_Click(object sender, EventArgs e)
         {
             VentanaGrupos v = new VentanaGrupos(la,lp);
