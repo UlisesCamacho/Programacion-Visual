@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using OfficeOpenXml;
+using System.IO;
+
 
 namespace ControlDeCorredores
 {
@@ -52,7 +55,7 @@ namespace ControlDeCorredores
             listBox1.Items.Clear();
             while (lector.Read())
             {
-                listBox1.Items.Add(lector.GetValue(0).ToString() + " " + lector.GetValue(1).ToString() +  " " + lector.GetValue(2).ToString() + " " + lector.GetValue(3).ToString() + " " + lector.GetValue(4).ToString() + " " +lector.GetValue(5).ToString());
+                listBox1.Items.Add(lector.GetValue(0).ToString() + " " + lector.GetValue(1).ToString() +  " " + lector.GetValue(2).ToString() + " " + lector.GetValue(3).ToString() /* + " " + lector.GetValue(4).ToString() + " " +lector.GetValue(5).ToString()*/);
             }
             desconectar();
 
@@ -82,6 +85,7 @@ namespace ControlDeCorredores
             textBox3.Text = "";
             textBox4.Text = "";
             textBox5.Text = "";
+            textBox6.Text = "";
             textBox7.Text = "";
             textBox8.Text = "";
             textBox9.Text = "";
@@ -137,8 +141,8 @@ namespace ControlDeCorredores
                  textBox1.Text = lector.GetValue(1).ToString();
                  textBox2.Text = lector.GetValue(2).ToString();
                  textBox3.Text = lector.GetValue(3).ToString();
-                textBox4.Text = lector.GetValue(4).ToString();
-                textBox5.Text = lector.GetValue(5).ToString();
+                 textBox4.Text = lector.GetValue(4).ToString();
+                 textBox5.Text = lector.GetValue(5).ToString();
 
             }
              desconectar();
@@ -154,13 +158,22 @@ namespace ControlDeCorredores
                 textBox3.Text = lu[aux].Sexo;
             }
         }
-
-        private void button4_Click(object sender, EventArgs e)
+       private void button4_Click(object sender, EventArgs e)
         {
             Close();       
         }
-
-        private void button5_Click(object sender, EventArgs e)
+       private void button5_Click(object sender, EventArgs e)
+        {
+            if (textBox6.Text != "")
+            {
+                calcular();
+            }
+            else
+            {
+                MessageBox.Show("Introducir peso antes");
+            }
+        }
+        private void calcular()
         {
             int peso;
             int calorias;
@@ -172,16 +185,59 @@ namespace ControlDeCorredores
             distancia = int.Parse(textBox4.Text);
             tiempo = int.Parse(textBox5.Text);
             peso = int.Parse(textBox6.Text);
-
-            calorias = (peso * distancia)/tiempo;
+            calorias = (peso * distancia) / tiempo;
+          
+            calorias = (peso * distancia) / tiempo;
             pasos = distancia * tiempo * 100;
             vel = distancia / tiempo;
 
             textBox7.Text = calorias.ToString();
             textBox8.Text = pasos.ToString();
             textBox9.Text = vel.ToString();
+
+            //meter random para los mensajes
+            if(distancia>9 && tiempo <50)
+            {
+                MessageBox.Show("Excelente tiempo y distancia: " + textBox1.Text);
+            }
+            else
+            {
+                MessageBox.Show("Vamos si se puede, mejora tu tiempo: " + textBox4.Text);
+            }
         }
 
+        private void button6_Click(object sender, EventArgs e)
+        {
+            using (ExcelPackage excel = new ExcelPackage())
+            {
+                FileInfo excelFile = new FileInfo(@".\ControlDeCorredores.xlsx");
+                excel.Workbook.Worksheets.Add("Corredores");
+                var worksheet = excel.Workbook.Worksheets["Corredores"];
+
+                worksheet.Cells["A1"].Value = "ID";
+                worksheet.Cells["B1"].Value = "Nombre";
+                worksheet.Cells["C1"].Value = "Edad";
+                worksheet.Cells["D1"].Value = "Sexo";
+                worksheet.Cells["E1"].Value = "Distancia";
+                worksheet.Cells["F1"].Value = "Tiempo";
+                worksheet.Cells["G1"].Value = "CaloriasQuemadas";
+                worksheet.Cells["H1"].Value = "Pasos";
+                worksheet.Cells["I1"].Value = "VelocidadPromedio";
+
+                worksheet.Cells["B2"].Value = textBox1.Text;
+                worksheet.Cells["C2"].Value = textBox2.Text;
+                worksheet.Cells["D2"].Value = textBox3.Text;
+                worksheet.Cells["E2"].Value = textBox4.Text;
+                worksheet.Cells["F2"].Value = textBox5.Text;
+                worksheet.Cells["G2"].Value = textBox6.Text;
+                worksheet.Cells["H2"].Value = textBox8.Text;
+                worksheet.Cells["I2"].Value = textBox7.Text;
+
+
+
+                excel.SaveAs(excelFile);
+            }
+        }
     }
  }
 
