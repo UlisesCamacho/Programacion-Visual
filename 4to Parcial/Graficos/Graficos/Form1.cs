@@ -25,6 +25,7 @@ namespace Graficos
 
             foreach (Figura f in lf)
             {
+               
 
                 switch (f.dir)
                 {
@@ -127,7 +128,7 @@ namespace Graficos
 
             f.x = e.X;
             f.y = e.Y;
-            switch (ra.Next(10))
+            switch (ra.Next(5))
             {
                 case 1:
                     f.dir = 1;
@@ -151,7 +152,7 @@ namespace Graficos
         {
             Graphics g = this.CreateGraphics();
           
-            Random r = new Random(6);
+            Random r = new Random(10);
            
             foreach (Figura f in lf)
             {

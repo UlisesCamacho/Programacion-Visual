@@ -57,6 +57,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
+            this.buttonExcel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -169,9 +174,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(15, 136);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 13);
+            this.label5.Size = new System.Drawing.Size(85, 13);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Distancia";
+            this.label5.Text = "Distancia metros";
             // 
             // textBox4
             // 
@@ -185,9 +190,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(137, 136);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 14;
-            this.label6.Text = "Tiempo";
+            this.label6.Text = "Tiempo min";
             // 
             // textBox5
             // 
@@ -235,7 +240,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 247);
+            this.label8.Location = new System.Drawing.Point(15, 249);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 13);
             this.label8.TabIndex = 20;
@@ -291,20 +296,69 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(475, 155);
+            this.button6.Location = new System.Drawing.Point(475, 148);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(239, 23);
+            this.button6.Size = new System.Drawing.Size(87, 23);
             this.button6.TabIndex = 27;
             this.button6.Text = "Excel";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(475, 177);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(239, 20);
+            this.textBox10.TabIndex = 28;
+            this.textBox10.Text = "1";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(167, 265);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(100, 20);
+            this.textBox11.TabIndex = 29;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(164, 248);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(34, 13);
+            this.label12.TabIndex = 30;
+            this.label12.Text = "Altura";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(475, 212);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(239, 23);
+            this.button7.TabIndex = 31;
+            this.button7.Text = "Cronometro";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // buttonExcel
+            // 
+            this.buttonExcel.Location = new System.Drawing.Point(610, 148);
+            this.buttonExcel.Name = "buttonExcel";
+            this.buttonExcel.Size = new System.Drawing.Size(104, 23);
+            this.buttonExcel.TabIndex = 32;
+            this.buttonExcel.Text = "ExcelTodos";
+            this.buttonExcel.UseVisualStyleBackColor = true;
+            this.buttonExcel.Click += new System.EventHandler(this.buttonExcel_Click);
             // 
             // VentanaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1139, 337);
+            this.ClientSize = new System.Drawing.Size(1144, 337);
+            this.Controls.Add(this.buttonExcel);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.textBox10);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -371,5 +425,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button buttonExcel;
     }
 }

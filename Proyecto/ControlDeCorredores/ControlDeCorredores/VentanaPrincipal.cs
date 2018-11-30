@@ -53,10 +53,29 @@ namespace ControlDeCorredores
             comand = new OleDbCommand(consulta, con);
             lector = comand.ExecuteReader();
             listBox1.Items.Clear();
+          
+           
             while (lector.Read())
             {
-                listBox1.Items.Add(lector.GetValue(0).ToString() + " " + lector.GetValue(1).ToString() +  " " + lector.GetValue(2).ToString() + " " + lector.GetValue(3).ToString() /* + " " + lector.GetValue(4).ToString() + " " +lector.GetValue(5).ToString()*/);
+                // Tabla
+                try
+                {    //tabla.nombre = lector.GetValue(0).ToString() 
+                    Usuario u = new Usuario();
+
+                    u.Nombre = lector.GetValue(1).ToString();
+                    u.Edad = int.Parse(lector.GetValue(2).ToString());
+                    u.Sexo = lector.GetValue(3).ToString();
+                    u.Distancia = float.Parse(lector.GetValue(4).ToString());
+                    u.Tiempo = float.Parse(lector.GetValue(5).ToString());
+                    u.Calorias = float.Parse(lector.GetValue(6).ToString());
+                    u.Pasos = float.Parse(lector.GetValue(7).ToString());
+                    u.Vel = float.Parse(lector.GetValue(7).ToString());
+                    lu.Add(u);
+                    listBox1.Items.Add(lector.GetValue(0).ToString() + " " + lector.GetValue(1).ToString() + " " + lector.GetValue(2).ToString() + " " + lector.GetValue(3).ToString() /* + " " + lector.GetValue(4).ToString() + " " +lector.GetValue(5).ToString()*/);
+                }
+                catch { }
             }
+
             desconectar();
 
         }
@@ -95,7 +114,6 @@ namespace ControlDeCorredores
         {
             //eliminar
             int aux = listBox1.SelectedIndex;
-
             String consulta;
             if (aux > -1)
             {
@@ -135,7 +153,6 @@ namespace ControlDeCorredores
              conectar();
              comand = new OleDbCommand(consulta, con);
              lector = comand.ExecuteReader();
-
              while (lector.Read())
              {
                  textBox1.Text = lector.GetValue(1).ToString();
@@ -143,7 +160,6 @@ namespace ControlDeCorredores
                  textBox3.Text = lector.GetValue(3).ToString();
                  textBox4.Text = lector.GetValue(4).ToString();
                  textBox5.Text = lector.GetValue(5).ToString();
-
             }
              desconectar();
         }
@@ -164,79 +180,184 @@ namespace ControlDeCorredores
         }
        private void button5_Click(object sender, EventArgs e)
         {
-            if (textBox6.Text != "")
+            if (textBox6.Text != "" || textBox11.Text != "")
             {
                 calcular();
             }
             else
             {
-                MessageBox.Show("Introducir peso antes");
+                MessageBox.Show("Introducir peso y estatura para calcular");
             }
         }
         private void calcular()
         {
-            int peso;
-            int calorias;
-            int vel;
-            int pasos;
-            int distancia;
-            int tiempo;
+            float peso;
+            float altura;
+            float calorias;
+            float vel;
+            float pasos;
+            float distancia;
+            float tiempo;
+            int edad;
 
-            distancia = int.Parse(textBox4.Text);
-            tiempo = int.Parse(textBox5.Text);
-            peso = int.Parse(textBox6.Text);
-            calorias = (peso * distancia) / tiempo;
-          
-            calorias = (peso * distancia) / tiempo;
-            pasos = distancia * tiempo * 100;
+            Random ra = new Random();
+            int r = ra.Next(1, 6);
+
+            distancia = float.Parse(textBox4.Text);
+            tiempo = float.Parse(textBox5.Text);
+            peso = float.Parse(textBox6.Text);
+            altura = float.Parse(textBox11.Text);
+            edad =int.Parse(textBox2.Text);
+            calorias = 0.0f;
+
+            if(textBox3.Text=="Hombre")
+            {
+                MessageBox.Show(" es Hombre");
+                calorias = (13.75f * peso) + (5 * altura) - (6.76f * edad)+66;    //(13,75 × el peso) +(5 × la estatura) -(6,76 × la edad) +66.
+
+            }
+            else {
+
+                if(textBox3.Text=="Mujer")
+                {
+                    MessageBox.Show("es mujer");
+                    calorias = (9.56f * peso) + (1.85f * altura) - (4.68f * edad) + 655;// (9,56 × el peso) +(1,85 × la estatura) -(4,68 × la edad) +655.
+                }
+                else
+                {
+                    MessageBox.Show("Tenemos un problema aqui");
+                }
+            }
+
+            //calorias = (peso * distancia) / tiempo;
+            pasos = distancia*2;
             vel = distancia / tiempo;
 
-            textBox7.Text = calorias.ToString();
+            textBox7.Text = calorias.ToString();//calorias.ToString();
             textBox8.Text = pasos.ToString();
             textBox9.Text = vel.ToString();
 
             //meter random para los mensajes
-            if(distancia>9 && tiempo <50)
+            switch (r)
             {
-                MessageBox.Show("Excelente tiempo y distancia: " + textBox1.Text);
+                case 1:
+                    if (distancia > 9 && tiempo < 50)
+                    {
+                        MessageBox.Show("Excelente tiempo y distancia: " + " " + textBox1.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vamos si se puede, mejora tu tiempo, actualmente es de:"+ " " + textBox5.Text);
+                    }
+                    break;
+                case 2:
+                    if(calorias>2000)
+                    {
+                        MessageBox.Show("Quemaste: " + textBox7.Text + ", muy bien");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Venga puedes dar mas " + textBox1.Text +"!!!");
+                    }
+                    break;
+                case 3:
+                    if(vel>1)
+                    {
+                        MessageBox.Show("tu velocidad es de: " + textBox6.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tienes que correr mas rapido");
+                    }
+                    break;
+                case 4:
+                    if(pasos>1000)
+                    {
+                        MessageBox.Show("tus pasos son: " + textBox8.Text + ", muy bien");
+                    }
+                    else
+                    {
+                        MessageBox.Show("tienes que mejorar la zancada");
+                    }
+                    break;
             }
-            else
-            {
-                MessageBox.Show("Vamos si se puede, mejora tu tiempo: " + textBox4.Text);
-            }
-        }
+        }       
 
         private void button6_Click(object sender, EventArgs e)
         {
+           // int count = int.Parse(textBox10.Text);
+          //  count++;
+          //  textBox10.Text = count.ToString();
+
             using (ExcelPackage excel = new ExcelPackage())
             {
+
+               
+
                 FileInfo excelFile = new FileInfo(@".\ControlDeCorredores.xlsx");
-                excel.Workbook.Worksheets.Add("Corredores");
-                var worksheet = excel.Workbook.Worksheets["Corredores"];
+              //  excelFile.OpenWrite();
+               
+                    excel.Workbook.Worksheets.Add("Corredores");
+                      var worksheet = excel.Workbook.Worksheets["Corredores"];
+
+                int i= 2;
+                foreach (Usuario aux in lu)
+                {
+
+                    worksheet.Cells["B" + i].Value =aux.Nombre;
+                    worksheet.Cells["C" + i].Value = aux.Edad;
+                    worksheet.Cells["D" + i].Value = aux.Sexo;
+                    worksheet.Cells["E" + i].Value = aux.Distancia;
+                    worksheet.Cells["F" + i].Value = aux.Tiempo;
+                    worksheet.Cells["G" + i].Value = aux.Calorias;
+                    worksheet.Cells["H" + i].Value = aux.Pasos;
+                    worksheet.Cells["I" + i].Value = aux.Vel;
+                    //worksheet.Cells["B" + i].Value = aux.Nombre;
+
+                   // MessageBox.Show(" se esta insertando");
+                   // worksheet.Cells
+                   i++;
+                   
+                }
 
                 worksheet.Cells["A1"].Value = "ID";
-                worksheet.Cells["B1"].Value = "Nombre";
-                worksheet.Cells["C1"].Value = "Edad";
-                worksheet.Cells["D1"].Value = "Sexo";
-                worksheet.Cells["E1"].Value = "Distancia";
-                worksheet.Cells["F1"].Value = "Tiempo";
-                worksheet.Cells["G1"].Value = "CaloriasQuemadas";
-                worksheet.Cells["H1"].Value = "Pasos";
-                worksheet.Cells["I1"].Value = "VelocidadPromedio";
+                      worksheet.Cells["B1"].Value = "Nombre";
+                      worksheet.Cells["C1"].Value = "Edad";
+                      worksheet.Cells["D1"].Value = "Sexo";
+                      worksheet.Cells["E1"].Value = "Distancia";
+                      worksheet.Cells["F1"].Value = "Tiempo";
+                      worksheet.Cells["G1"].Value = "CaloriasQuemadas";
+                      worksheet.Cells["H1"].Value = "Pasos";
+                      worksheet.Cells["I1"].Value = "VelocidadPromedio";
 
-                worksheet.Cells["B2"].Value = textBox1.Text;
-                worksheet.Cells["C2"].Value = textBox2.Text;
-                worksheet.Cells["D2"].Value = textBox3.Text;
-                worksheet.Cells["E2"].Value = textBox4.Text;
-                worksheet.Cells["F2"].Value = textBox5.Text;
-                worksheet.Cells["G2"].Value = textBox6.Text;
-                worksheet.Cells["H2"].Value = textBox8.Text;
-                worksheet.Cells["I2"].Value = textBox7.Text;
+                
 
+                //string id = worksheet.Cells["A1"].Value.ToString();
+             //   worksheet.Cells["A" + count].Value = textBox1.Text;
+         /*    worksheet.Cells["B"+ count].Value = textBox1.Text;
+                worksheet.Cells["C"+ count].Value = textBox2.Text;
+                worksheet.Cells["D"+ count].Value = textBox3.Text;
+                worksheet.Cells["E"+ count].Value = textBox4.Text;
+                worksheet.Cells["F"+ count].Value = textBox5.Text;
 
-
+                worksheet.Cells["G"+ count].Value = textBox7.Text;
+                worksheet.Cells["H"+ count].Value = textBox8.Text;
+                worksheet.Cells["I"+ count].Value = textBox9.Text;*/
+                
                 excel.SaveAs(excelFile);
             }
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Cronometro cr = new Cronometro();
+            cr.ShowDialog();
+        }
+
+        private void buttonExcel_Click(object sender, EventArgs e)
+        {
+
         }
     }
  }
